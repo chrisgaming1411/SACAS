@@ -1,0 +1,145 @@
+==============================================================
+  SACAS – Student Academic Consultation Appointment System
+  COMPLETE SETUP GUIDE
+==============================================================
+
+─────────────────────────────────────────────────────────────
+STEP 1 – INSTALL PREREQUISITES
+─────────────────────────────────────────────────────────────
+• Java JDK 17+      https://adoptium.net/
+• Apache NetBeans   https://netbeans.apache.org/
+• MySQL Server 8+   https://dev.mysql.com/downloads/mysql/
+• MySQL Connector/J https://dev.mysql.com/downloads/connector/j/
+  (download the JAR file – you will add it in Step 4)
+
+─────────────────────────────────────────────────────────────
+STEP 2 – CREATE THE DATABASE
+─────────────────────────────────────────────────────────────
+1. Open MySQL Workbench (or any MySQL client).
+2. Run the file:  sacas_db.sql
+   • This creates the database "sacas_db" and all tables.
+   • It also inserts the default ADMIN account:
+       username : admin
+       password : admin123
+
+─────────────────────────────────────────────────────────────
+STEP 3 – OPEN THE PROJECT IN NETBEANS
+─────────────────────────────────────────────────────────────
+1. File → Open Project → select the AdminSacas folder.
+2. If NetBeans shows errors about missing libraries, continue
+   to Step 4 first.
+
+─────────────────────────────────────────────────────────────
+STEP 4 – ADD THE MYSQL CONNECTOR JAR
+─────────────────────────────────────────────────────────────
+1. Right-click the project → Properties → Libraries.
+2. Click "Add JAR/Folder".
+3. Browse to the mysql-connector-j-*.jar you downloaded.
+4. Click OK / Apply.
+
+─────────────────────────────────────────────────────────────
+STEP 5 – CONFIGURE DATABASE PASSWORD (if needed)
+─────────────────────────────────────────────────────────────
+Open:  src/adminsacas/DBConnection.java
+
+Change this line if your MySQL root has a password:
+    private static final String PASS = "";   // ← put your password here
+
+─────────────────────────────────────────────────────────────
+STEP 6 – REPLACE UPDATED SOURCE FILES
+─────────────────────────────────────────────────────────────
+Copy every .java file from the  SACAS/src/  folder into
+the corresponding folder in your NetBeans project src/:
+
+  SACAS/src/adminsacas/  →  src/adminsacas/
+  SACAS/src/Contents/    →  src/Contents/
+
+Also copy sacas_db.sql to your project root.
+
+─────────────────────────────────────────────────────────────
+STEP 7 – BUILD AND RUN
+─────────────────────────────────────────────────────────────
+1. Right-click project → Clean and Build.
+2. Run the project. The main entry point is:
+       adminsacas.tryy   (Student Login form)
+3. You can also run  adminsacas.InstructorForm  directly
+   if you want the Instructor Login form first.
+
+─────────────────────────────────────────────────────────────
+LOGIN ACCOUNTS (after setup)
+─────────────────────────────────────────────────────────────
+ADMIN  (works on BOTH login forms):
+   username : admin
+   password : admin123
+
+STUDENTS / INSTRUCTORS:
+   Accounts are created automatically when the Admin adds
+   profiles via User Management.
+   The system will display:
+     • The generated username  (e.g. jdelacruz001)
+     • The generated password  (e.g. juan@2026)
+   The admin gives these credentials to the user.
+
+─────────────────────────────────────────────────────────────
+HOW CREDENTIALS ARE GENERATED
+─────────────────────────────────────────────────────────────
+ID Number:  Auto-incremented  (e.g. STU-2026-001)
+
+Username:   (first letter of firstname)(full lastname)(last 3 of ID#)
+  Example:  Juan Dela Cruz, STU-2026-001  →  jdelacruz001
+
+Password:   (firstname lowercase)@(last 4 digits of ID#)
+  Example:  juan@2001
+
+If a username already exists, a number is appended (e.g. jdelacruz0012).
+
+─────────────────────────────────────────────────────────────
+SYSTEM FLOW
+─────────────────────────────────────────────────────────────
+1. ADMIN logs in → adds students and instructors →
+   system auto-generates credentials and shows them.
+
+2. INSTRUCTOR logs in → sets availability (checkboxes by
+   day/time) → saves to DB.
+
+3. STUDENT logs in → views faculty availability →
+   clicks "Book Appointment" → picks a slot + reason → submits.
+
+4. INSTRUCTOR sees the PENDING request in
+   "Approve/Decline Request" → approves or declines.
+
+5. STUDENT receives a notification (viewable in
+   "View Notification") and can see updated status in
+   "Manage Appointment".
+
+6. INSTRUCTOR can view completed consultation history in
+   "View Consultation Logs" and export it to CSV.
+
+─────────────────────────────────────────────────────────────
+FILES CREATED / MODIFIED
+─────────────────────────────────────────────────────────────
+NEW utility files:
+  adminsacas/DBConnection.java     – JDBC connection helper
+  adminsacas/Session.java          – stores logged-in user
+
+UPDATED files (all DB-connected):
+  adminsacas/tryy.java             – student login (DB auth)
+  adminsacas/InstructorForm.java   – instructor login (DB auth)
+  adminsacas/StudentForm.java      – shows real student name
+  adminsacas/InstructorDashboard.java – shows real instructor name
+  adminsacas/cl.java               – admin dashboard
+  Contents/Usermanagement.java     – add users + auto-generate credentials
+  Contents/Setavailability.java    – save/load from availability table
+  Contents/viewfaculty.java        – loads instructors + slots from DB
+  Contents/bookapp.java            – saves appointments to DB
+  Contents/approvedecline.java     – updates status + sends notifications
+  Contents/manageapp.java          – student views own appointments
+  Contents/viewnotif.java          – reads notifications from DB
+  Contents/viewlogs.java           – reads consultation logs from DB
+  Contents/Departmentconfiguration.java – manages departments table
+
+UNCHANGED (kept as-is):
+  Contents/calendar.java
+  Contents/Systemanalytics.java
+
+==============================================================
