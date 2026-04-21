@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Login",
+            "request": "launch",
+            "mainClass": "adminsacas.Login",
+            "projectName": "SACAS_846676fe"
+        },
+        {
+            "type": "java",
             "name": "Launch Current File",
             "request": "launch",
             "mainClass": "${file}"

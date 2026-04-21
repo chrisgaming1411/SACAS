@@ -2,6 +2,8 @@
     "java.project.referencedLibraries": [
         "lib/**/*.jar",
         "c:\\Users\\Administrator\\Downloads\\mysql-connector-j-9.6.0\\mysql-connector-j-9.6.0.jar",
-        "c:\\Users\\Administrator\\Downloads\\jfreechart-1.5.3.jar"
+        "c:\\Users\\Administrator\\Downloads\\jfreechart-1.5.3.jar",
+        "c:\\Users\\ctian\\Downloads\\mysql-connector-j-9.6.0\\mysql-connector-j-9.6.0\\mysql-connector-j-9.6.0.jar",
+        "c:\\Users\\ctian\\Downloads\\drive-download-20260328T021335Z-1-001\\JFreeChart\\jfreechart-1.0.19.jar"
     ]
 }
