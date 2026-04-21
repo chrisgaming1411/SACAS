@@ -12,7 +12,7 @@ USE sacas_db;
 CREATE TABLE IF NOT EXISTS users (
     id         INT AUTO_INCREMENT PRIMARY KEY,
     username   VARCHAR(60)  NOT NULL UNIQUE,
-    password   VARCHAR(255) NOT NULL  -- stores SHA-256 hash (64 hex chars),
+    password   VARCHAR(255) NOT NULL,  -- stores SHA-256 hash (64 hex chars),
     role       ENUM('ADMIN','STUDENT','INSTRUCTOR') NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );

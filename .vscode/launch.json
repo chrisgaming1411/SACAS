@@ -1,0 +1,70 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Launch Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "Launch add",
+            "request": "launch",
+            "mainClass": "Contents.add",
+            "projectName": "SACAS_89fc6266"
+        },
+        {
+            "type": "java",
+            "name": "Launch delete",
+            "request": "launch",
+            "mainClass": "Contents.delete",
+            "projectName": "SACAS_89fc6266"
+        },
+        {
+            "type": "java",
+            "name": "Launch AdministratorDashboard",
+            "request": "launch",
+            "mainClass": "adminsacas.AdministratorDashboard",
+            "projectName": "SACAS_89fc6266"
+        },
+        {
+            "type": "java",
+            "name": "Launch DBConnection",
+            "request": "launch",
+            "mainClass": "adminsacas.DBConnection",
+            "projectName": "SACAS_89fc6266"
+        },
+        {
+            "type": "java",
+            "name": "Launch InstructorDashboard",
+            "request": "launch",
+            "mainClass": "adminsacas.InstructorDashboard",
+            "projectName": "SACAS_89fc6266"
+        },
+        {
+            "type": "java",
+            "name": "Launch InstructorLogin",
+            "request": "launch",
+            "mainClass": "adminsacas.InstructorLogin",
+            "projectName": "SACAS_89fc6266"
+        },
+        {
+            "type": "java",
+            "name": "Launch Login",
+            "request": "launch",
+            "mainClass": "adminsacas.Login",
+            "projectName": "SACAS_89fc6266"
+        },
+        {
+            "type": "java",
+            "name": "Launch StudentDashboard",
+            "request": "launch",
+            "mainClass": "adminsacas.StudentDashboard",
+            "projectName": "SACAS_89fc6266"
+        }
+    ]
+}
